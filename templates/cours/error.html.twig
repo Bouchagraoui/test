@@ -1,0 +1,25 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+    <h1>Créer un Cours</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nomC) }}
+        {{ form_row(form.dureeC) }}
+        <div class="error">
+            {% for error in form.dureeC.errors %}
+                <div>{{ error.message }}</div>
+            {% endfor %}
+        </div>
+        {{ form_row(form.periodeC) }}
+        {{ form_row(form.descriptionC) }}
+        <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
+
+    {% if errors is defined %}
+        <ul>
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des Cours{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Cours</h1>
+
+    <!-- Recherche -->
+    <form method="get" action="{{ path('app_cours_index') }}" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" value="{{ app.request.get('search') }}" placeholder="Rechercher par nom, période ou description" />
+            <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+        </div>
+    </form>
+
+    <div class="card shadow-sm rounded-lg">
+        <div class="card-body">
+            <table class="table table-hover table-bordered text-center">
+                <thead class="thead-dark bg-primary text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Durée</th>
+                        <th>Période</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cours in cours %}
+                    <tr>
+                        <td>{{ cours.id }}</td>
+                        <td>{{ cours.nomC }}</td>
+                        <td>{{ cours.dureeC }}</td>
+                        <td>{{ cours.periodeC }}</td>
+                        <td>{{ cours.descriptionC }}</td>
+                        <td>
+                            <a href="{{ path('app_cours_show', {'id': cours.id}) }}" class="btn btn-info btn-sm mx-1">Voir</a>
+                            <a href="{{ path('app_cours_edit', {'id': cours.id}) }}" class="btn btn-warning btn-sm mx-1">Modifier</a>
+                            <a href="{{ path('app_cours_delete', {'id': cours.id}) }}" class="btn btn-warning btn-sm mx-1">Supprimer</a>
+
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Aucun cours trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="{{ path('app_cours_new') }}" class="btn btn-success btn-lg">Créer un nouveau cours</a>
+    </div>
+</div>
+{% endblock %}

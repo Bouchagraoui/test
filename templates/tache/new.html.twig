@@ -1,0 +1,61 @@
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}Créer une nouvelle tâche{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Créer une nouvelle tâche</h1>
+
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+        
+        <div class="form-group mb-3">
+            {{ form_label(form.idT, 'ID de la tâche', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.idT, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.idT, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.nomT, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.nomT, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.nomT, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.descriptionT, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.descriptionT, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.descriptionT, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.dateDebut, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.dateDebut, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.dateFin, 'Date de fin', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.dateFin, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.dateFin, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.statusT, 'Statut', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.statusT, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.statusT, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <div class="form-group mb-3">
+            {{ form_label(form.projet, 'Projet associé', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.Projet, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Prjet, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Créer</button>
+        
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_tache_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}
+

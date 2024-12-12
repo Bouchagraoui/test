@@ -1,0 +1,27 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Détails de la Ressource{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Détails de la Ressource</h1>
+
+    <div>
+        <p><strong>ID:</strong> {{ ressource.id }}</p> <!-- Remplacé idR par id -->
+        <p><strong>Type:</strong> {{ ressource.typeR }}</p>
+        <p><strong>Nom:</strong> {{ ressource.nomR }}</p>
+        <p><strong>Durée:</strong> {{ ressource.dureeR }}</p>
+
+        {% if ressource.pdfressource %}
+            <p><strong>Fichier PDF:</strong> <a href="{{ asset('uploads/' ~ ressource.pdfressource) }}" target="_blank">Télécharger</a></p>
+        {% else %}
+            <p>Aucun fichier PDF associé.</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ path('app_ressource_edit', {'id': ressource.id}) }}" class="btn btn-warning">Modifier</a>
+    <a href="{{ path('app_ressource_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
+
+
+
+          

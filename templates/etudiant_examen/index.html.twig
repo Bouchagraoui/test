@@ -1,0 +1,49 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des EtudiantExamen{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Etudiants par Examen</h1>
+
+    <div class="card shadow-sm rounded-lg">
+        <div class="card-body">
+            <table class="table table-hover table-bordered text-center">
+                <thead class="thead-dark bg-primary text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Numéro Etudiant</th>
+                        <th>Note</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for etudiant_examen in etudiant_examens %}
+                    <tr>
+                        <td>{{ etudiant_examen.id }}</td>
+                        <td>{{ etudiant_examen.numeroEtudiant }}</td>
+                        <td>{{ etudiant_examen.note }}</td>
+                        <td>
+                            <a href="{{ path('app_etudiant_examen_show', {'id': etudiant_examen.id}) }}" class="btn btn-info btn-sm mx-1">Voir</a>
+                            <a href="{{ path('app_etudiant_examen_edit', {'id': etudiant_examen.id}) }}" class="btn btn-warning btn-sm mx-1">Modifier</a>
+                            <form action="{{ path('app_etudiant_examen_delete', {'id': etudiant_examen.id}) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant examen ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ etudiant_examen.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm mx-1">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">Aucun étudiant examen trouvé</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="{{ path('app_etudiant_examen_new') }}" class="btn btn-success btn-lg">Créer un nouvel étudiant examen</a>
+    </div>
+</div>
+{% endblock %}

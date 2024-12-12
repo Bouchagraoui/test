@@ -1,0 +1,16 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Modifier un Cours{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Cours</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nomC) }}
+        {{ form_row(form.dureeC) }}
+        {{ form_row(form.periodeC) }}
+        {{ form_row(form.descriptionC) }}
+        <button type="submit">Mettre à jour</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_cours_index') }}">Retour à la liste</a>
+{% endblock %}

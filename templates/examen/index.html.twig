@@ -1,0 +1,50 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des Examens{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Examens</h1>
+
+    <!-- Recherche (si applicable) -->
+    <!-- Vous pouvez ajouter un formulaire de recherche similaire si nécessaire -->
+
+    <div class="card shadow-sm rounded-lg">
+        <div class="card-body">
+            <table class="table table-hover table-bordered text-center">
+                <thead class="thead-dark bg-primary text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for examen in examens %}
+                    <tr>
+                        <td>{{ examen.id }}</td>
+                        <td>{{ examen.date ? examen.date|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_examen_show', {'id': examen.id}) }}" class="btn btn-info btn-sm mx-1">Voir</a>
+                            <a href="{{ path('app_examen_edit', {'id': examen.id}) }}" class="btn btn-warning btn-sm mx-1">Modifier</a>
+                            <form action="{{ path('app_examen_delete', {'id': examen.id}) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet examen ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ examen.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm mx-1">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">Aucun examen trouvé</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="{{ path('app_examen_new') }}" class="btn btn-success btn-lg">Créer un nouvel examen</a>
+    </div>
+</div>
+{% endblock %}

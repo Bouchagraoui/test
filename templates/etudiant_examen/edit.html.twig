@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Edit EtudiantExamen{% endblock %}
+
+{% block body %}
+    <h1>Edit EtudiantExamen</h1>
+
+    {{ include('etudiant_examen/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_etudiant_examen_index') }}">back to list</a>
+
+    {{ include('etudiant_examen/_delete_form.html.twig') }}
+{% endblock %}

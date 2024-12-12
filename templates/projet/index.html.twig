@@ -1,0 +1,55 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des Projets{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Projets</h1>
+
+    <div class="mb-4 text-center">
+        <a href="{{ path('app_projet_new') }}" class="btn btn-primary">Créer un Nouveau Projet</a>
+    </div>
+
+    <div class="card shadow-sm rounded-lg">
+        <div class="card-body">
+            <table class="table table-hover table-bordered text-center">
+                <thead class="thead-dark bg-primary text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Date de Début</th>
+                        <th>Date de Fin</th>
+                        <th>Statuts</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for projet in projets %}
+                        <tr>
+                            <td>{{ projet.id }}</td>
+                            <td>{{ projet.nomP }}</td>
+                            <td>{{ projet.descriptionP }}</td>
+                            <td>{{ projet.dateDebut|date('Y-m-d') }}</td>
+                            <td>{{ projet.dateFin|date('Y-m-d') }}</td>
+                            <td>{{ projet.statuts }}</td>
+                            <td>
+                                <a href="{{ path('app_projet_show', { 'id': projet.id }) }}" class="btn btn-info btn-sm mx-1">Voir</a>
+                                <a href="{{ path('app_projet_edit', { 'id': projet.id }) }}" class="btn btn-warning btn-sm mx-1">Modifier</a>
+                                <form method="post" action="{{ path('app_projet_delete', { 'id': projet.id }) }}" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ projet.id) }}">
+                                    <button class="btn btn-danger btn-sm mx-1">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">Aucun projet trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

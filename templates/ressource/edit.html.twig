@@ -1,0 +1,39 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Modifier la Ressource{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Modifier la Ressource</h1>
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.typeR) }}
+            {{ form_widget(form.typeR, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.typeR, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.nomR) }}
+            {{ form_widget(form.nomR, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.nomR, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.fileR) }}
+            {{ form_widget(form.fileR, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.fileR, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.dureeR) }}
+            {{ form_widget(form.dureeR, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.dureeR, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.pdfressource) }}
+            {{ form_widget(form.pdfressource, {'attr': {'class': 'form-control-file'}}) }}
+            {{ form_errors(form.pdfressource, {'attr': {'class': 'text-danger'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_ressource_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

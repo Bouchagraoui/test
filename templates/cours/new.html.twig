@@ -1,0 +1,50 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Create Cours{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">Create a New Course</h1>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                {{ form_start(form, { 'attr': { 'class': 'form-horizontal' } }) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.nomC, 'Course Name', { 'label_attr': { 'class': 'form-label' } }) }}
+                    {{ form_widget(form.nomC, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.dureeC, 'Duration', { 'label_attr': { 'class': 'form-label' } }) }}
+                    {{ form_widget(form.dureeC, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.periodeC, 'Period', { 'label_attr': { 'class': 'form-label' } }) }}
+                    {{ form_widget(form.periodeC, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.descriptionC, 'Description', { 'label_attr': { 'class': 'form-label' } }) }}
+                    {{ form_widget(form.descriptionC, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+
+                {% if errors is defined and errors|length > 0 %}
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            {% for error in errors %}
+                                <li>{{ error.message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <button class="btn btn-primary w-100">Create</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

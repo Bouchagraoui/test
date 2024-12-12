@@ -1,0 +1,55 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Détails de la tâche{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Détails de la tâche</h1>
+
+        <!-- Carte pour afficher les détails -->
+        <div class="card shadow-sm rounded-lg">
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <td>{{ tache.idT }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ tache.nomT }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ tache.descriptionT }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de début</th>
+                            <td>{{ tache.dateDebut|date('Y-m-d H:i') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de fin</th>
+                            <td>{{ tache.dateFin|date('Y-m-d H:i') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Statut</th>
+                            <td>{{ tache.statusT }}</td>
+                        </tr>
+                        <tr>
+                            <th>Projet</th>
+                            <td>{{ tache.PrjetT }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="mt-4 text-center">
+            <a href="{{ path('app_tache_index') }}" class="btn btn-secondary btn-lg mx-2">Retour à la liste</a>
+            <a href="{{ path('app_tache_edit', {'id': tache.id}) }}" class="btn btn-warning btn-lg mx-2">Modifier</a>
+
+            <!-- Formulaire de suppression -->
+            <form method="post" action="{{ path('app_tache_delete', {'id': tache.id}) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tache.id) }}">
+                <button type="submit" class="btn btn-danger btn-lg mx-2">Supprimer</b

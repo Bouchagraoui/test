@@ -1,0 +1,46 @@
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}Créer une Ressource{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Créer une Ressource</h1>
+
+        {{ form_start(form) }}
+            <div class="form-group mb-3">
+                {{ form_label(form.typeR, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.typeR, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.typeR, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form_label(form.nomR, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nomR, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nomR, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form_label(form.fileR, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.fileR, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.fileR, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form_label(form.dureeR, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.dureeR, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.dureeR, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+
+            <div class="form-group mb-4">
+                {{ form_label(form.pdfressource, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.pdfressource, {'attr': {'class': 'form-control-file'}}) }}
+                {{ form_errors(form.pdfressource, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Créer</button>
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_ressource_index') }}" class="btn btn-secondary mt-3 d-block mx-auto">Retour à la liste</a>
+    </div>
+{% endblock %}

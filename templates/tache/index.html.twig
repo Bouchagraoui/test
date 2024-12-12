@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des tâches{% endblock %}
+
+{% block body %}
+    <h1>Liste des Tâches</h1>
+
+    {# Affichage des messages flash #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Status</th>
+                <th>Projet</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tache in taches %}
+                <tr>
+                    <td>{{ tache.nomT }}</td>
+                    <td>{{ tache.descriptionT }}</td>
+                    <td>{{ tache.dateDebut|date('Y-m-d H:i') }}</td>
+                    <td>{{ tache.dateFin|date('Y-m-d H:i') }}</td>
+                    <td>{{ tache.statusT }}</td>
+                    <td>{{ tache.projetT.nom }}</td> {# Affiche le nom du projet associé #}
+                    <td>
+                        <a href="{{ path('app_tache_show', {'id': tache.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('app_tache_edit', {'id': tache.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('app_tache_delete', {'id': tache.id}) }}" style="display:inline;">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tache.id) }}">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_tache_new') }}" class="btn btn-primary">Ajouter une tâche</a>
+{% endblock %}
